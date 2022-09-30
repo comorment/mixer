@@ -1,6 +1,5 @@
-This usecase describe how to run MiXeR analysis (http://github.com/precimed/mixer) on synthetic data, generated with simu_linux (http://github.com/precimed/simu). All commands below assume that ``$SIF`` and ``$SINGULARITY_BIND`` environmental variables are defined as described in [Getting started](../README.md#getting-started) section of the main README file.
-
-Re-define ``SINGULARITY_BIND`` so that ``/REF`` binding points to the reference folder within mixer repo.
+This usecase describe how to run MiXeR analysis (http://github.com/precimed/mixer) on synthetic data, generated with simu_linux (http://github.com/precimed/simu).
+All commands below assume that ``$COMORMENT``  environmental is defined as described [here](https://github.com/comorment/containers#getting-started), and ``$SINGULARITY_BIND`` and ``$SIF`` variables are defined as follows:
 ```
 export SINGULARITY_BIND=$COMORMENT/mixer/reference:/REF
 export SIF=$COMORMENT/mixer/singularity
@@ -86,13 +85,13 @@ python /tools/mixer/precimed/mixer_figures.py two --statistic mean std --json-fi
 After processing the resulting figures shoud look like this:
 
 Unique:
-![mixer_simu_unique.png](https://raw.githubusercontent.com/comorment/containers/main/usecases/mixer_simu/mixer_simu_unique.png)
+![mixer_simu_unique.png](https://raw.githubusercontent.com/comorment/mixer/main/usecases/mixer_simu/mixer_simu_unique.png)
 
 Partial:
-![mixer_simu_partial.png](https://raw.githubusercontent.com/comorment/containers/main/usecases/mixer_simu/mixer_simu_partial.png)
+![mixer_simu_partial.png](https://raw.githubusercontent.com/comorment/mixer/main/usecases/mixer_simu/mixer_simu_partial.png)
 
 Shared:
-![mixer_simu_shared.png](https://raw.githubusercontent.com/comorment/containers/main/usecases/mixer_simu/mixer_simu_shared.png)
+![mixer_simu_shared.png](https://raw.githubusercontent.com/comorment/mixer/main/usecases/mixer_simu/mixer_simu_shared.png)
 
 To include density plots to the resulting figure, add ``--trait1-file`` and ``--trait2-file`` arguments like this:
 ```

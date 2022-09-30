@@ -1,8 +1,5 @@
 This usecase describe how to run MiXeR analysis (http://github.com/precimed/mixer) on real summary statistics:
-schizophrenia (SCZ) and intelligence (INT). All commands below assume that ``$SIF`` and ``$SINGULARITY_BIND`` environmental
-variables are defined as described in [Getting started](../README.md#getting-started) section of the main README file.
-
-Re-define ``SINGULARITY_BIND`` so that ``/REF`` binding points to the reference folder within mixer repo.
+schizophrenia (SCZ) and intelligence (INT). All commands below assume that ``$COMORMENT``  environmental is defined as described in [Getting started](../README.md#getting-started) section of the main README file, and ``$SINGULARITY_BIND`` and ``$SIF`` variables are defined as follows:
 ```
 export SINGULARITY_BIND=$COMORMENT/mixer/reference:/REF
 export SIF=$COMORMENT/mixer/singularity
@@ -22,20 +19,20 @@ However, it's important to exclude the MHC region (chr6:26-34M).
 
 Below we provide python scripts to re-format these particular summary statistics.
 Note that a more general set of command line tools for harmonizing summary statistics 
-is available from https://github.com/precimed/python_convert which is already included in ``python3.sif`` container.
+is available from https://github.com/precimed/python_convert which is already included in ``python3.sif`` container (https://github.com/comorment/containers/blob/main/docs/python3.md).
 
 ```
->zcat $COMORMENT/containers/reference/sumstats/clozuk_pgc2.meta.sumstats.txt.gz | head -n 3
+>zcat $COMORMENT/mixer/reference/sumstats/clozuk_pgc2.meta.sumstats.txt.gz | head -n 3
 SNP	Freq.A1	CHR	BP	A1	A2	OR	SE	P
 10:100968448:T:AA	0.3519	10	100968448	t	aa	1.0024	0.01	0.812
 10:101574552:A:ATG	0.4493	10	101574552	a	atg	0.98906	0.0097	0.2585
 
->zcat $COMORMENT/containers/reference/sumstats/SavageJansen_2018_intelligence_metaanalysis.txt.gz | head -n 3
+>zcat $COMORMENT/mixer/reference/sumstats/SavageJansen_2018_intelligence_metaanalysis.txt.gz | head -n 3
 SNP	UNIQUE_ID	CHR	POS	A1	A2	EAF_HRC	Zscore	stdBeta	SE	P	N_analyzed	minINFO	EffectDirection
 rs12184267	1:715265	1	715265	t	c	0.0408069	0.916	0.00688729787581148	0.007518884143899	0.3598	225955	0.805386	-???????????????++?
 rs12184277	1:715367	1	715367	a	g	0.9589313	-0.656	-0.00491449054466469	0.00749160144003763	0.5116	226215	0.808654	+???????????????--?
 
-singularity exec --home $PWD:/home $SIF/python3.sif python
+singularity exec --home $PWD:/home $SIF/mixer.sif python
 
 import pandas as pd
 import numpy as np
@@ -73,7 +70,7 @@ rs12184277	1	715367	A	G	226215.0	-0.656
 ```
 
 Now you can run MiXeR using [MIXER_REAL.job](mixer_real/MIXER_REAL.job), which is just a slightly adjusted version of the [mixer_simu/MIXER_SIMU.job](MIXER_SIMU.job) used in [mixer_simu.md](mixer_simu.md).
-Note that you don't need to generate ``.ld`` and ``.snps`` files as they are already included within the reference folder ([here](https://github.com/comorment/containers/tree/main/reference/ldsc/1000G_EUR_Phase3_plink)).
+Note that you don't need to generate ``.ld`` and ``.snps`` files as they are already included within the reference folder ([here](https://github.com/comorment/mixer/tree/main/reference/ldsc/1000G_EUR_Phase3_plink)).
 Note that each run produces a ``SCZ_vs_INT.fit.repN.log`` file, containing some useful information.
 For example, inspect ``SCZ_vs_INT.fit.rep1.log`` to make sure the number of SNPs used in the analysis is reasonable:
 ```
@@ -100,7 +97,7 @@ constrain analysis to 419659 tag variants (due to extract='/REF/ldsc/1000G_EUR_P
 
 Now generate figures using these commands:
 ```
-singularity shell --home $PWD:/home $SIF/python3.sif
+singularity shell --home $PWD:/home $SIF/mixer.sif
 
 python /tools/mixer/precimed/mixer_figures.py combine --json SCZ.fit.rep@.json  --out SCZ.fit
 python /tools/mixer/precimed/mixer_figures.py combine --json SCZ.test.rep@.json  --out SCZ.test
@@ -120,6 +117,6 @@ Resulting files:
 * [SCZ_and_INT.fit.csv](mixer_real/SCZ_and_INT.fit.csv) - estimates from univariate analysis (NB! it's important to use the "fit" data for AIC / BIC values, not the "test" data)
 * [SCZ_vs_INT.csv](mixer_real/SCZ_vs_INT.csv) - estimates from bivariate analysis
 * [SCZ_vs_INT.png](mixer_real/SCZ_vs_INT.png) - venn diagram, stratified QQ plots, likelihood figure
-  ![SCZ_vs_INT.png](https://raw.githubusercontent.com/comorment/containers/main/usecases/mixer_real/SCZ_vs_INT.png)
+  ![SCZ_vs_INT.png](https://raw.githubusercontent.com/comorment/mixer/main/usecases/mixer_real/SCZ_vs_INT.png)
 * [SCZ_and_INT.test.power.png](mixer_real/SCZ_and_INT.test.power.png) - power curve for SCZ and INT
-  ![SCZ_and_INT.test.power.png](https://raw.githubusercontent.com/comorment/containers/main/usecases/mixer_real/SCZ_and_INT.test.power.png)
+  ![SCZ_and_INT.test.power.png](https://raw.githubusercontent.com/comorment/mixer/main/usecases/mixer_real/SCZ_and_INT.test.power.png)
