@@ -2,6 +2,12 @@ This usecase describe how to run MiXeR analysis (http://github.com/precimed/mixe
 schizophrenia (SCZ) and intelligence (INT). All commands below assume that ``$SIF`` and ``$SINGULARITY_BIND`` environmental
 variables are defined as described in [Getting started](../README.md#getting-started) section of the main README file.
 
+Re-define ``SINGULARITY_BIND`` so that ``/REF`` binding points to the reference folder within mixer repo.
+```
+export SINGULARITY_BIND=$COMORMENT/mixer/reference:/REF
+export SIF=$COMORMENT/mixer/singularity
+```
+
 Firts, let's take a look at the columns available in the summary statistics.
 INT GWAS has all required columns, but they need to be renamed.
 SCZ GWAS lacks SNP rs#, z-score and sample size.

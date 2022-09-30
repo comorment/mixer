@@ -29,5 +29,15 @@ RUN chmod +x /tmp/install_mixer.sh
 RUN bash /tmp/install_mixer.sh
 ENV BGMG_SHARED_LIBRARY="/tools/mixer/src/build/lib/libbgmg.so"
 
+WORKDIR /tools/simu
+COPY /scripts/install_simu.sh /tmp
+RUN chmod +x /tmp/install_simu.sh
+RUN bash /tmp/install_simu.sh
+
+WORKDIR /tools/plink2
+COPY /scripts/install_plink2.sh /tmp
+RUN chmod +x /tmp/install_plink2.sh
+RUN bash /tmp/install_plink2.sh
+
 WORKDIR /tools
  

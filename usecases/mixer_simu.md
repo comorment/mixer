@@ -1,8 +1,14 @@
 This usecase describe how to run MiXeR analysis (http://github.com/precimed/mixer) on synthetic data, generated with simu_linux (http://github.com/precimed/simu). All commands below assume that ``$SIF`` and ``$SINGULARITY_BIND`` environmental variables are defined as described in [Getting started](../README.md#getting-started) section of the main README file.
 
+Re-define ``SINGULARITY_BIND`` so that ``/REF`` binding points to the reference folder within mixer repo.
+```
+export SINGULARITY_BIND=$COMORMENT/mixer/reference:/REF
+export SIF=$COMORMENT/mixer/singularity
+```
+
 1. Generate two pairs of traits for MiXeR analysis, covering two scenarios: complete polygenic overlap (``shared``), non-overlaping causal variants (``unique``), and partly overlaping causal variants (``partial``):
 ```
-singularity shell --home $PWD:/home $SIF/gwas.sif 
+singularity shell --home $PWD:/home $SIF/mixer.sif 
 simu_linux --qt --bfile /REF/hapgen/chr21 --seed 123 --causal-n 100 100 --trait1-sigsq 1 0 --trait2-sigsq 0 1 --num-components 2 --out unique --num-traits 2
 simu_linux --qt --bfile /REF/hapgen/chr21 --seed 123 --causal-n 100     --trait1-sigsq 1   --trait2-sigsq 1   --num-components 1 --out shared --num-traits 2
 simu_linux --qt --bfile /REF/hapgen/chr21 --seed 123 --causal-n 50 50 50 --trait1-sigsq 1 1 0   --trait2-sigsq 1 0 1   --num-components 3 --out partial --num-traits 2
@@ -16,7 +22,7 @@ plink2 --bfile /REF/hapgen/chr21 --glm --pheno partial.pheno --pheno-name trait2
 
 2. Convert the output of ``plink2`` to a format compatible with ``MiXeR``:
 ```
-singularity exec --home $PWD:/home $SIF/python3.sif python
+singularity exec --home $PWD:/home $SIF/mixer.sif python
 import pandas as pd
 for fname, out in [('{x}.{y}.trait{y}.glm.linear'.format(x=x,y=y), '{}.{}.sumstats'.format(x,y)) for x in ['unique', 'shared', 'partial'] for y in ['1', '2']]:
     pd.read_csv(fname, delim_whitespace=True)[['ID', 'REF', 'ALT', 'OBS_CT', 'T_STAT']].rename(columns={'ID':'SNP', 'REF':'A1', 'ALT':'A2', 'OBS_CT':'N', 'T_STAT':'Z'}).to_csv(out,index=False, sep='\t')
@@ -25,7 +31,7 @@ for fname, out in [('{x}.{y}.trait{y}.glm.linear'.format(x=x,y=y), '{}.{}.sumsta
 3. Run univariate MiXeR analysis (each analysis should take up to 10 minutes on a standard laptop, in this demo example)
 
 ```
-singularity shell --home $PWD:/home $SIF/python3.sif
+singularity shell --home $PWD:/home $SIF/mixer.sif
 
 export MIXER_COMMON_ARGS="--chr2use 21 --ld-file /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.run4.ld --bim-file /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.bim --extract /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.prune_maf0p05_rand2M_r2p8.rep1.snps"
 
@@ -65,7 +71,7 @@ Adjust ``MIXER_SIMU.job`` to match configuration of your cluster. Then trigger a
 Once you get all results, combine them across 20 runs, and produce figures as follows:
 
 ```
-singularity shell --home $PWD:/home $SIF/python3.sif
+singularity shell --home $PWD:/home $SIF/mixer.sif
 python /tools/mixer/precimed/mixer_figures.py combine --json unique.fit.rep@.json --out unique.fit
 python /tools/mixer/precimed/mixer_figures.py combine --json unique.test.rep@.json --out unique.test
 python /tools/mixer/precimed/mixer_figures.py combine --json shared.fit.rep@.json --out shared.fit

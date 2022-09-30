@@ -1,0 +1,2 @@
+SavageJansen_2018_intelligence_metaanalysis.txt.gz filter=lfs diff=lfs merge=lfs -text
+clozuk_pgc2.meta.sumstats.txt.gz filter=lfs diff=lfs merge=lfs -text
