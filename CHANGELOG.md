@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Run `conda clean -a -y` in Dockerfile reducing image size.
+
 ## [1.3.0] - 2022-09-30
 
 ### Added
