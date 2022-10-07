@@ -39,5 +39,7 @@ COPY /scripts/install_plink2.sh /tmp
 RUN chmod +x /tmp/install_plink2.sh
 RUN bash /tmp/install_plink2.sh
 
+RUN conda clean -a -y
+
 WORKDIR /tools
  
