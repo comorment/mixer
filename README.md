@@ -11,7 +11,7 @@ To get started, see
 
 - general instructions about how to use CoMorMent containers: https://github.com/comorment/containers#getting-started
 
-- examples of how to use mixer.sif container on [synthetic](usecases/mixer_real.md) and [real](usecases/mixer_simu.md) data.
+- examples of how to use mixer.sif container on [synthetic](usecases/mixer_simu.md) and [real](usecases/mixer_real.md) data.
 
 
 
