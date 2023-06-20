@@ -1,5 +1,8 @@
 #!/bin/bash
-#SBATCH --job-name=mixer
+#SBATCH --job-name=mixer_simu
+#SBATCH --output=MIXER_SIMU.txt
+#SBATCH --error=MIXER_SIMU.txt
+#SBATCH --open-mode=truncate
 #SBATCH --account=p697_norment
 #SBATCH --time=02:00:00
 #SBATCH --cpus-per-task=16
@@ -8,7 +11,7 @@
 
 module load singularity/3.7.1
 
-export COMORMENT=/cluster/projects/p697/github/comorment
+export COMORMENT=/ess/p697/data/durable/s3-api/github/comorment
 export SINGULARITY_BIND="$COMORMENT/mixer/reference:/REF:ro"
 export SIF=$COMORMENT/mixer/singularity
 export MIXER_COMMON_ARGS="--chr2use 21 --ld-file /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.run4.ld --bim-file /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.bim"
