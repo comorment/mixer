@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=mixer_simu
-#SBATCH --output=MIXER_SIMU.txt
-#SBATCH --error=MIXER_SIMU.txt
+#SBATCH --output=MIXER_SIMU-%A_%a.txt
+#SBATCH --error=MIXER_SIMU-%A_%a.txt
 #SBATCH --open-mode=truncate
 #SBATCH --account=p697_norment
 #SBATCH --time=02:00:00
