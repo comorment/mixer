@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added [scripts/run_mixer.ipynb`] Jupyter notebook for simplifying Slurm job submissions for lists of traits.
+
 ### Fixed
 
 - Updated outdated paths to comorment containers on p697
