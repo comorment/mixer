@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Added [scripts/run_mixer.ipynb`] Jupyter notebook for simplifying Slurm job submissions for lists of traits.
+- Added [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb) Jupyter notebook for simplifying Slurm job submissions for lists of traits.
+
+### Fixed
+
+- Fixed incorrect job dependency bug in [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb)
 
 ## [1.3.0] - 2022-09-30
 
