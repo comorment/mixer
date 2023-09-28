@@ -6,6 +6,7 @@
 #SBATCH --mem-per-cpu=8000M
 #SBATCH --array=1-20
 
+module purge
 module load singularity/3.7.1
 
 export COMORMENT=/cluster/projects/p697/github/comorment
