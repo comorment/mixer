@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb) Jupyter notebook for simplifying Slurm job submissions for lists of traits.
+- Include ``module purge`` in Slurm job scripts to avoid conflicts with system modules.
 
 ### Fixed
 
