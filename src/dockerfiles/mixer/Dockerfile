@@ -1,22 +1,34 @@
-FROM 'ubuntu:18.04'
+FROM ubuntu:20.04
 
 ENV TZ=Europe
 ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /tmp
 COPY /scripts/apt_get_essential.sh .
-RUN chmod +x apt_get_essential.sh
-RUN bash apt_get_essential.sh
+RUN chmod +x apt_get_essential.sh && \
+    bash apt_get_essential.sh
 
 WORKDIR /tmp
 COPY /scripts/install_miniconda3.sh .
-RUN chmod +x install_miniconda3.sh
-RUN bash install_miniconda3.sh
+RUN chmod +x install_miniconda3.sh && \
+    bash install_miniconda3.sh
 
-RUN conda install python=3.8 --yes
-RUN conda install -c conda-forge jupyterlab --yes
-RUN conda install numpy scipy pandas statsmodels matplotlib seaborn --yes
-RUN conda install -c conda-forge matplotlib-venn numdifftools --yes
+RUN conda install conda=23.9.0 && \
+    conda config --add channels conda-forge && \
+    conda config --set channel_priority strict && \
+    conda install \
+    jupyterlab=4.0.7 \
+    matplotlib=3.7.3 \
+    matplotlib-venn=0.11.9 \
+    numpy=1.24.4 \
+    numdifftools=0.9.41 \
+    pandas=2.0.3 \
+    python=3.8 \
+    scipy=1.10.1 \
+    seaborn=0.13.0 \
+    statsmodels=0.14.0 \
+    --yes && \
+    conda clean -a -y
 
 WORKDIR /tools/plink
 COPY /scripts/install_plink.sh /tmp
@@ -39,7 +51,6 @@ COPY /scripts/install_plink2.sh /tmp
 RUN chmod +x /tmp/install_plink2.sh
 RUN bash /tmp/install_plink2.sh
 
-RUN conda clean -a -y
 
 WORKDIR /tools
  
