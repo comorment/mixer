@@ -19,7 +19,7 @@ export MIXER_COMMON_ARGS="--chr2use 21 --ld-file /REF/ldsc/1000G_EUR_Phase3_plin
 export REP="rep${SLURM_ARRAY_TASK_ID}"
 export EXTRACT="--extract /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.prune_maf0p05_rand2M_r2p8.$REP.snps"
 
-export PYTHON="singularity exec --home $PWD:/home $SIF/python3.sif python"
+export PYTHON="singularity exec --home $PWD:/home $SIF/mixer.sif python"
 
 $PYTHON /tools/mixer/precimed/mixer.py fit1 $MIXER_COMMON_ARGS $EXTRACT --trait1-file unique.1.sumstats --out unique.1.fit.$REP
 $PYTHON /tools/mixer/precimed/mixer.py fit1 $MIXER_COMMON_ARGS $EXTRACT --trait1-file unique.2.sumstats --out unique.2.fit.$REP
