@@ -6,6 +6,7 @@
 #SBATCH --mem-per-cpu=8000M
 #SBATCH --array=1-20
 
+module purge
 module load singularity/3.7.1
 
 export COMORMENT=/cluster/projects/p697/github/comorment
@@ -15,7 +16,7 @@ export MIXER_COMMON_ARGS="--ld-file /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.Q
 export REP="rep${SLURM_ARRAY_TASK_ID}"
 export EXTRACT="--extract /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.prune_maf0p05_rand2M_r2p8.$REP.snps"
 
-export PYTHON="singularity exec --home $PWD:/home $SIF/python3.sif python"
+export PYTHON="singularity exec --home=$PWD:/home $SIF/mixer.sif python"
 
 $PYTHON /tools/mixer/precimed/mixer.py fit1 $MIXER_COMMON_ARGS $EXTRACT --trait1-file SCZ.sumstats.gz --out SCZ.fit.$REP
 $PYTHON /tools/mixer/precimed/mixer.py fit1 $MIXER_COMMON_ARGS $EXTRACT --trait1-file INT.sumstats.gz --out INT.fit.$REP
