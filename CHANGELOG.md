@@ -9,8 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Version pinned for Ubuntu, conda and conda packages.
+- Run `conda clean -a -y` in Dockerfile reducing image size.
 - Added [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb) Jupyter notebook for simplifying Slurm job submissions for lists of traits.
 - Include ``module purge`` in Slurm job scripts to avoid conflicts with system modules.
+
+### Changed
+
+- Use Ubuntu 20.04 LTS as base image for Docker and Singularity containers.
 
 ### Fixed
 
