@@ -1,5 +1,8 @@
 #!/bin/bash
-#SBATCH --job-name=mixer
+#SBATCH --job-name=mixer_simu
+#SBATCH --output=MIXER_SIMU-%A_%a.txt
+#SBATCH --error=MIXER_SIMU-%A_%a.txt
+#SBATCH --open-mode=truncate
 #SBATCH --account=p697_norment
 #SBATCH --time=02:00:00
 #SBATCH --cpus-per-task=16
@@ -9,14 +12,14 @@
 module purge
 module load singularity/3.7.1
 
-export COMORMENT=/cluster/projects/p697/github/comorment
+export COMORMENT=/ess/p697/data/durable/s3-api/github/comorment
 export SINGULARITY_BIND="$COMORMENT/mixer/reference:/REF:ro"
 export SIF=$COMORMENT/mixer/singularity
 export MIXER_COMMON_ARGS="--chr2use 21 --ld-file /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.run4.ld --bim-file /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.bim"
 export REP="rep${SLURM_ARRAY_TASK_ID}"
 export EXTRACT="--extract /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.prune_maf0p05_rand2M_r2p8.$REP.snps"
 
-export PYTHON="singularity exec --home $PWD:/home $SIF/python3.sif python"
+export PYTHON="singularity exec --home $PWD:/home $SIF/mixer.sif python"
 
 $PYTHON /tools/mixer/precimed/mixer.py fit1 $MIXER_COMMON_ARGS $EXTRACT --trait1-file unique.1.sumstats --out unique.1.fit.$REP
 $PYTHON /tools/mixer/precimed/mixer.py fit1 $MIXER_COMMON_ARGS $EXTRACT --trait1-file unique.2.sumstats --out unique.2.fit.$REP

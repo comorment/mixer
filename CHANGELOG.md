@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed incorrect job dependency bug in [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb)
+- Updated outdated paths to comorment containers on p697
+- Explicitly named log files in Slurm .job scripts
+- Fixed reference to wrong container file in MIXER_SIMU.job
 
 ## [1.3.0] - 2022-09-30
 
