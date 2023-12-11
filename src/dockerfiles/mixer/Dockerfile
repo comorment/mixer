@@ -36,6 +36,11 @@ RUN chmod +x /tmp/install_plink.sh
 RUN bash /tmp/install_plink.sh
 
 WORKDIR /tools
+COPY /scripts/install_boost.sh /tmp
+RUN chmod +x /tmp/install_boost.sh
+RUN bash /tmp/install_boost.sh
+
+WORKDIR /tools
 COPY /scripts/install_mixer.sh /tmp
 RUN chmod +x /tmp/install_mixer.sh
 RUN bash /tmp/install_mixer.sh
