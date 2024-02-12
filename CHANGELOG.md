@@ -7,8 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- Updated `mixer.sif` build (`md5 checksum 422b572261fcc9f4fd076c82ea875d2c`)
+- revised installer scripts
+
 ### Added
 
+- Added `gdb` to `apt_get_essentials.sh` for debugging.
 - Version pinned for Ubuntu, conda and conda packages.
 - Run `conda clean -a -y` in Dockerfile reducing image size.
 - Added [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb) Jupyter notebook for simplifying Slurm job submissions for lists of traits.
