@@ -33,7 +33,7 @@ apt-get install -y --no-install-recommends \
    pandoc-citeproc=0.15.0.1-1build4 \
    parallel=20161222-1.1 \
    perl=5.30.0-9ubuntu0.5 \
-   tar=1.30+dfsg-7ubuntu0.20.04.3 \
+   tar=1.30+dfsg-7ubuntu0.20.04.4 \
    tofrodos=1.7.13+ds-4 \
    unzip=6.0-25ubuntu1.1 \
    vim=2:8.1.2269-1ubuntu5.22 \
