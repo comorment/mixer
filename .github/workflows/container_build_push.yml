@@ -43,12 +43,12 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: "{{defaultContext}}:"
+          context: "{{defaultContext}}:src"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           file:
-            ./Dockerfile
+            ./dockerfiles/mixer/Dockerfile
           platforms: linux/amd64
 
   build-apptainer-container:
