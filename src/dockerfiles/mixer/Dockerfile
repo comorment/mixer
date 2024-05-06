@@ -13,7 +13,7 @@ COPY /scripts/install_mambaforge.sh .
 RUN chmod +x install_mambaforge.sh && \
     bash install_mambaforge.sh
 
-RUN mamba install python=3.8.18 \
+RUN mamba install python=3.10 \
     jupyterlab=4.0.7 \
     matplotlib=3.7.3 \
     matplotlib-venn=0.11.9 \
