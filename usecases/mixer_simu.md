@@ -11,12 +11,12 @@ singularity shell --home $PWD:/home $SIF/mixer.sif
 simu_linux --qt --bfile /REF/hapgen/chr21 --seed 123 --causal-n 100 100 --trait1-sigsq 1 0 --trait2-sigsq 0 1 --num-components 2 --out unique --num-traits 2
 simu_linux --qt --bfile /REF/hapgen/chr21 --seed 123 --causal-n 100     --trait1-sigsq 1   --trait2-sigsq 1   --num-components 1 --out shared --num-traits 2
 simu_linux --qt --bfile /REF/hapgen/chr21 --seed 123 --causal-n 50 50 50 --trait1-sigsq 1 1 0   --trait2-sigsq 1 0 1   --num-components 3 --out partial --num-traits 2
-plink2 --bfile /REF/hapgen/chr21 --glm --pheno shared.pheno --pheno-name trait1 --out shared.1
-plink2 --bfile /REF/hapgen/chr21 --glm --pheno shared.pheno --pheno-name trait2 --out shared.2
-plink2 --bfile /REF/hapgen/chr21 --glm --pheno unique.pheno --pheno-name trait1 --out unique.1
-plink2 --bfile /REF/hapgen/chr21 --glm --pheno unique.pheno --pheno-name trait2 --out unique.2
-plink2 --bfile /REF/hapgen/chr21 --glm --pheno partial.pheno --pheno-name trait1 --out partial.1
-plink2 --bfile /REF/hapgen/chr21 --glm --pheno partial.pheno --pheno-name trait2 --out partial.2
+plink2 --bfile /REF/hapgen/chr21 --glm allow-no-covars --pheno shared.pheno --pheno-name trait1 --out shared.1
+plink2 --bfile /REF/hapgen/chr21 --glm allow-no-covars --pheno shared.pheno --pheno-name trait2 --out shared.2
+plink2 --bfile /REF/hapgen/chr21 --glm allow-no-covars --pheno unique.pheno --pheno-name trait1 --out unique.1
+plink2 --bfile /REF/hapgen/chr21 --glm allow-no-covars --pheno unique.pheno --pheno-name trait2 --out unique.2
+plink2 --bfile /REF/hapgen/chr21 --glm allow-no-covars --pheno partial.pheno --pheno-name trait1 --out partial.1
+plink2 --bfile /REF/hapgen/chr21 --glm allow-no-covars --pheno partial.pheno --pheno-name trait2 --out partial.2
 ```
 
 2. Convert the output of ``plink2`` to a format compatible with ``MiXeR``:
