@@ -79,11 +79,10 @@ jobs:
           IFS= read -r first_tag <<EOF
           $tags
           EOF
-          echo "The first tag is: $first_tag"
-          echo "CSV-tags are: $csv_tags"
+          push_tags="$(printf $csv_tags | sed -e "s/mixer/mixer_sif/g")"
           echo ${{ secrets.GITHUB_TOKEN }} | oras login --username ${{ github.repository_owner }} --password-stdin ghcr.io
           docker pull kaczmarj/apptainer:latest
           docker run --rm --privileged -v $(pwd):/work kaczmarj/apptainer build mixer.sif docker://"$first_tag"
-          oras push "$csv_tags" --artifact-type application/vnd.acme.rocket.config mixer.sif
+          oras push "$push_tags" mixer.sif
           rm mixer.sif
         shell: sh

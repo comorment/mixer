@@ -45,14 +45,14 @@ cd path/to/repositories/mixer/singularity
 mv mixer.sif mixer.sif.old  # optional, just rename the old(er) file
 apptainer pull docker://ghcr.io/comorment/mixer:<tag>  # or
 singularity pull docker://ghcr.io/comorment/mixer:<tag> # or 
-oras pull ghcr.io/comorment/mixer:<tag>
+oras pull ghcr.io/comorment/mixer_sif:<tag>
 ```
 
 where `<tag>` corresponds to a tag listed under [packages](https://github.com/comorment/mixer/pkgs/container/mixer), 
 such as `latest`, `main`, or `sha_<GIT SHA>`. 
 The `oras pull` statement
 
-To pull the corresponding Docker image, issue
+To pull the corresponding Docker image, issue:
 
 ```bash
 docker pull ghcr.io/comorment/mixer:<tag>
