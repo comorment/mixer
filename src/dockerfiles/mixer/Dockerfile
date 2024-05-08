@@ -1,5 +1,9 @@
 FROM ubuntu:20.04
 
+LABEL org.opencontainers.image.source=https://github.com/comorment/mixer
+LABEL org.opencontainers.image.description="Container image for MiXeR (https://github.com/precimed/mixer)"
+LABEL org.opencontainers.image.licenses=GPL-3.0
+
 ENV TZ=Europe
 ENV DEBIAN_FRONTEND noninteractive
 
