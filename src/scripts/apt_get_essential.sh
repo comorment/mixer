@@ -26,7 +26,6 @@ apt-get install -y --no-install-recommends \
    libgsl-dev=2.5+dfsg-6+deb10u1build0.20.04.1 \
    libnss3=2:3.98-0ubuntu0.20.04.2 \
    libpcre2-dev=10.34-7ubuntu0.1 \
-   libquadmath0=10.5.0-1ubuntu1~20.04 \
    libxt-dev=1:1.1.5-1 \
    make=4.2.1-1.2 \
    pandoc=2.5-3build2 \
