@@ -43,7 +43,6 @@ RUN bash /tmp/install_boost.sh
 WORKDIR /tools
 COPY /scripts/install_mixer.sh /tmp
 RUN chmod +x /tmp/install_mixer.sh
-COPY /scripts/patches/CMakeLists.patch /tmp
 RUN bash /tmp/install_mixer.sh
 ENV BGMG_SHARED_LIBRARY="/tools/mixer/src/build/lib/libbgmg.so"
 
