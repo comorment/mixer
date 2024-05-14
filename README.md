@@ -53,7 +53,7 @@ oras pull ghcr.io/comorment/mixer_sif:<tag>
 
 where `<tag>` corresponds to a tag listed under [packages](https://github.com/comorment/mixer/pkgs/container/mixer), 
 such as `latest`, `main`, or `sha_<GIT SHA>`. 
-The `oras pull` statement
+The `oras pull` statement pulls the `mixer.sif` file from [ghcr.io](https://github.com/comorment/mixer/pkgs/container/mixer_sif) using the [ORAS](https://oras.land) registry, without the need to build the container locally.
 
 ### Pulling and using Docker image
 
