@@ -1,3 +1,5 @@
+# MiXeR on real data
+
 This usecase describe how to run MiXeR analysis (http://github.com/precimed/mixer) on real summary statistics:
 schizophrenia (SCZ) and intelligence (INT). All commands below assume that ``$COMORMENT``  environmental is defined as described in [Getting started](../README.md#getting-started) section of the main README file, and ``$SINGULARITY_BIND`` and ``$SIF`` variables are defined as follows:
 ```
