@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Updated
 
+- Updated PLINK2.0 (20240516)
 - Added installation information to the README.md file.
 - Mambaforge for Python 3.10.14 environment (was Python 3.8)
 - Updated PLINK1.9 (20231211) and PLINK2.0 (20231211) versions (and revised corresponding syntax in mixer_simu example)
