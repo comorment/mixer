@@ -1,6 +1,7 @@
 # MiXeR
 
-Singularity wrapper for <https://github.com/precimed/mixer>
+This project provides [Singularity](https://sylabs.io/singularity/) wrapper for <https://github.com/precimed/mixer>, 
+as well as [Docker](https://www.docker.com/) images for the same software.
 
 The original reference and example data are included in this repository.
 
@@ -29,6 +30,8 @@ In order to set up these resource, some software may be required
 
 ### Clone the repository
 
+To download the last revision of this project, issue:
+
 ```bash
 cd path/to/repositories
 git clone --depth 1 https://github.com/comorment/mixer.git
@@ -50,7 +53,9 @@ oras pull ghcr.io/comorment/mixer_sif:<tag>
 
 where `<tag>` corresponds to a tag listed under [packages](https://github.com/comorment/mixer/pkgs/container/mixer), 
 such as `latest`, `main`, or `sha_<GIT SHA>`. 
-The `oras pull` statement
+The `oras pull` statement pulls the `mixer.sif` file from [ghcr.io](https://github.com/comorment/mixer/pkgs/container/mixer_sif) using the [ORAS](https://oras.land) registry, without the need to build the container locally.
+
+### Pulling and using Docker image
 
 To pull the corresponding Docker image, issue:
 
@@ -59,8 +64,19 @@ docker pull ghcr.io/comorment/mixer:<tag>
 ```
 
 If working on recent Macs, add the `--platform=linux/amd64` after `docker pull`. 
-This may allow replacing `singularity exec ...` or `apptainer exec ...` statements with appropriate `docker run ...` statements in the [usecases]() section, 
+This may allow replacing `singularity exec ...` or `apptainer exec ...` statements with appropriate `docker run ...` statements in the [usecases/mixer_simu](usecases/mixer_simu#docker-details) section, 
 on systems where Singularity or Apptainer is unavailable. 
+Functionally, the Docker image is equivalent to the Singularity container, but note that syntax for mounting volumes and invoking commands may differ.
+Please refer to[docs.docker.com](https://docs.docker.com) for more information.
+
+> [!NOTE] Note that the provided Docker image may not support all CPUs, and may not be able to run on all systems via CPU virtualization.
+> An option may be to build the Docker image on the host machine (e.g., M1 Macs, older Intel CPUs), as:
+>
+>```bash
+>docker build --platform=linux/amd64 -t ghcr.io/comorment/mixer -f dockerfiles/mixer/Dockerfile .
+>``` 
+
+An exampe of using the Docker image is provided in the [usecases/mixer_simu](usecases/mixer_simu#docker-details) section.
 
 ## Systems without internet access
 

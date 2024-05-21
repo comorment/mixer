@@ -11,14 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Added installation information to the README.md file.
 - Mambaforge for Python 3.10.14 environment (was Python 3.8)
-- Updated PLINK1.9 (20231211) and PLINK2.0 (20231211) versions
+- Updated PLINK1.9 (20231211) and PLINK2.0 (20231211) versions (and revised corresponding syntax in mixer_simu example)
 - Updated apt package versions to current
-- Updated `mixer.sif` build (`md5 checksum 422b572261fcc9f4fd076c82ea875d2c`)
-- revised installer scripts
+- Revised installer scripts
+- Updated READMEs and example files
 
 ### Added
 
-- Building and pushing the MiXeR container to the registry is now automated using GitHub Actions.
+- Building and pushing the MiXeR images in both Docker and Singularity format to the [ghcr.io](https://ghcr.io) registry is now automated using GitHub Actions.
 - Added `gdb` to `apt_get_essentials.sh` for debugging.
 - Version pinned for Ubuntu, conda and conda packages.
 - Run `conda clean -a -y` in Dockerfile reducing image size.
@@ -28,9 +28,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Use Ubuntu 20.04 LTS as base image for Docker and Singularity containers.
+- Rebuilt container w. md5 checksum b344119fd1f8f9c425f0edea78c08881 (commit: 3882739)
 
 ### Fixed
 
+- Removed use of `np.unique` in [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb)
 - Fixed incorrect job dependency bug in [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb)
 - Updated outdated paths to comorment containers on p697
 - Explicitly named log files in Slurm .job scripts
