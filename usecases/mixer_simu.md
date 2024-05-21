@@ -106,24 +106,24 @@ The syntax above can be adapted to Docker as follows:
 
 ```bash
 #!/bin/bash
-# define environment variables
+# define environment variables:
 export IMAGE="ghcr.io/comorment/mixer:latest"  # adapt as necessary
-export MIXER="/Users/espehage/Repositories/comorment-mixer"  # adapt as necessary
+export MIXER="<path/to>/mixer"  # adapt as necessary
 export SLURM_ARRAY_TASK_ID=1
 export MIXER_COMMON_ARGS="--chr2use 21 --ld-file /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.run4.ld --bim-file /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.bim"
 export REP="rep${SLURM_ARRAY_TASK_ID}"
 export EXTRACT="--extract /REF/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.prune_maf0p05_rand2M_r2p8.$REP.snps"
-# shortcuts for different binaries and interactive shell
+# shortcuts for different binaries and interactive shell:
 export PYTHON="docker run --platform=linux/amd64 --rm -v ${MIXER}/usecases:/home -v ${MIXER}/reference:/REF -w/home --entrypoint=python ${IMAGE}"
 export SIMU="docker run --platform=linux/amd64 --rm -v ${MIXER}/usecases:/home -v ${MIXER}/reference:/REF -w/home --entrypoint=simu_linux ${IMAGE}"
 export PLINK1="docker run --platform=linux/amd64 --rm -v ${MIXER}/usecases:/home -v ${MIXER}/reference:/REF -w/home --entrypoint=plink1 ${IMAGE}"
 export PLINK2="docker run --platform=linux/amd64 --rm -v ${MIXER}/usecases:/home -v ${MIXER}/reference:/REF -w/home --entrypoint=plink2 ${IMAGE}"
 export ISHELL="docker run --platform=linux/amd64 --rm -it -v ${MIXER}/usecases:/home -v ${MIXER}/reference:/REF -w/home --entrypoint=bash ${IMAGE}"
 
-# invoke mixer.py help documentation
+# invoke mixer.py help documentation:
 $PYTHON /tools/mixer/precimed/mixer.py fit1 --help 
 
-# prepare simulated data
+# prepare simulated data:
 $SIMU --qt --bfile /REF/hapgen/chr21 --seed 123 --causal-n 100 100 --trait1-sigsq 1 0 --trait2-sigsq 0 1 --num-components 2 --out unique --num-traits 2
 $SIMU --qt --bfile /REF/hapgen/chr21 --seed 123 --causal-n 100     --trait1-sigsq 1   --trait2-sigsq 1   --num-components 1 --out shared --num-traits 2
 $SIMU --qt --bfile /REF/hapgen/chr21 --seed 123 --causal-n 50 50 50 --trait1-sigsq 1 1 0   --trait2-sigsq 1 0 1   --num-components 3 --out partial --num-traits 2
@@ -138,18 +138,18 @@ $PYTHON -c "import pandas as pd
 for fname, out in [('{x}.{y}.trait{y}.glm.linear'.format(x=x,y=y), '{}.{}.sumstats'.format(x,y)) for x in ['unique', 'shared', 'partial'] for y in ['1', '2']]:
     pd.read_csv(fname, delim_whitespace=True)[['ID', 'REF', 'ALT', 'OBS_CT', 'T_STAT']].rename(columns={'ID':'SNP', 'REF':'A1', 'ALT':'A2', 'OBS_CT':'N', 'T_STAT':'Z'}).to_csv(out,index=False, sep='\t')"
 
-# MiXeR univariate fit
+# MiXeR univariate fit:
 $PYTHON /tools/mixer/precimed/mixer.py fit1 $MIXER_COMMON_ARGS $EXTRACT --trait1-file unique.1.sumstats --out unique.1
 
-# cheat
+# cheat:
 cp unique.1.json unique.2.json && cp unique.1.json shared.1.json && cp unique.1.json shared.2.json && cp unique.1.json partial.1.json && cp unique.1.json partial.2.json
 
-# bivariate fit
+# bivariate fit:
 $PYTHON /tools/mixer/precimed/mixer.py fit2 $MIXER_COMMON_ARGS $EXTRACT --trait1-file unique.1.sumstats --trait2-file unique.2.sumstats --trait1-params unique.1.json --trait2-params unique.2.json --out unique
 $PYTHON /tools/mixer/precimed/mixer.py fit2 $MIXER_COMMON_ARGS $EXTRACT --trait1-file shared.1.sumstats --trait2-file shared.2.sumstats --trait1-params shared.1.json --trait2-params shared.2.json --out shared
 $PYTHON /tools/mixer/precimed/mixer.py fit2 $MIXER_COMMON_ARGS $EXTRACT --trait1-file partial.1.sumstats --trait2-file partial.2.sumstats --trait1-params partial.1.json --trait2-params partial.2.json --out partial
 
-# figures
+# figures:
 $PYTHON /tools/mixer/precimed/mixer_figures.py two --json shared.json --out shared
 $PYTHON /tools/mixer/precimed/mixer_figures.py two --json unique.json --out unique
 $PYTHON /tools/mixer/precimed/mixer_figures.py two --json partial.json --out partial
