@@ -1,5 +1,9 @@
 FROM ubuntu:20.04
 
+LABEL org.opencontainers.image.source=https://github.com/comorment/mixer
+LABEL org.opencontainers.image.description="Container image for MiXeR (https://github.com/precimed/mixer)"
+LABEL org.opencontainers.image.licenses=GPL-3.0
+
 ENV TZ=Europe
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -9,31 +13,32 @@ RUN chmod +x apt_get_essential.sh && \
     bash apt_get_essential.sh
 
 WORKDIR /tmp
-COPY /scripts/install_miniconda3.sh .
-RUN chmod +x install_miniconda3.sh && \
-    bash install_miniconda3.sh
+COPY /scripts/install_mambaforge.sh .
+RUN chmod +x install_mambaforge.sh && \
+    bash install_mambaforge.sh
 
-RUN conda install conda=23.9.0 && \
-    conda config --add channels conda-forge && \
-    conda config --set channel_priority strict && \
-    conda install \
+RUN mamba install python=3.10.14 \
     jupyterlab=4.0.7 \
     matplotlib=3.7.3 \
     matplotlib-venn=0.11.9 \
     numpy=1.24.4 \
     numdifftools=0.9.41 \
     pandas=2.0.3 \
-    python=3.8 \
     scipy=1.10.1 \
     seaborn=0.13.0 \
     statsmodels=0.14.0 \
     --yes && \
-    conda clean -a -y
+    mamba clean -a -y
 
 WORKDIR /tools/plink
 COPY /scripts/install_plink.sh /tmp
 RUN chmod +x /tmp/install_plink.sh
 RUN bash /tmp/install_plink.sh
+
+WORKDIR /tools
+COPY /scripts/install_boost.sh /tmp
+RUN chmod +x /tmp/install_boost.sh
+RUN bash /tmp/install_boost.sh
 
 WORKDIR /tools
 COPY /scripts/install_mixer.sh /tmp

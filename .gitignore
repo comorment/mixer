@@ -1,1 +1,6 @@
 .DS_Store
+.bash_history
+usecases/partial.*
+usecases/shared.*
+usecases/unique.*
+usecases/.ipython
