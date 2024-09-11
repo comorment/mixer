@@ -1,0 +1,3 @@
+seq 2 22 | parallel echo "1000G.EUR.QC.{}" > merge_list.txt
+plink --bfile 1000G.EUR.QC.1 --merge-list merge_list.txt --make-bed --out 1000G.EUR.QC.@
+
