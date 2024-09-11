@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 - Added ``reference/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.[bed,bim,fam]`` files, to simplify steps for MAGMA analysis in GSA-MiXeR protocol
-
+- Added ``reference/ldsc/1000G_EUR_Phase3_plink/baseline_v2.2_1000G.EUR.QC.@.annot.gz`` files - binary functional annotations based
+ 
 ### Updated
 
 - Updated PLINK2.0 (20240516)
