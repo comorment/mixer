@@ -1,3 +1,9 @@
 chr21.bed filter=lfs diff=lfs merge=lfs -text
 chr21.bim filter=lfs diff=lfs merge=lfs -text
 chr21.fam filter=lfs diff=lfs merge=lfs -text
+partial.1.sumstats.gz filter=lfs diff=lfs merge=lfs -text
+partial.2.sumstats.gz filter=lfs diff=lfs merge=lfs -text
+shared.1.sumstats.gz filter=lfs diff=lfs merge=lfs -text
+shared.2.sumstats.gz filter=lfs diff=lfs merge=lfs -text
+unique.1.sumstats.gz filter=lfs diff=lfs merge=lfs -text
+unique.2.sumstats.gz filter=lfs diff=lfs merge=lfs -text
