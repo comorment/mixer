@@ -1,4 +1,4 @@
-# MiXeR reference data
+# Reference data for MiXeR analysis (bivariate and GSA-MiXeR)
 
 This project provides reference files for cross-trait (bivariate) and GSA-MiXeR analyses.
 
