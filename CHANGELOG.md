@@ -7,42 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Added GSA-MiXeR reference files from https://github.com/precimed/gsa-mixer
 - Added ``referene/hapgen/[partial,shared,unique].sumstats.gz``
 - Added ``reference/ldsc/1000G_EUR_Phase3_plink/1000G.EUR.QC.@.[bed,bim,fam]`` files, to simplify steps for MAGMA analysis in GSA-MiXeR protocol
 - Added ``reference/ldsc/1000G_EUR_Phase3_plink/baseline_v2.2_1000G.EUR.QC.@.annot.gz`` files - binary functional annotations based
- 
-### Updated
-
-- Updated PLINK2.0 (20240516)
-- Added installation information to the README.md file.
-- Mambaforge for Python 3.10.14 environment (was Python 3.8)
-- Updated PLINK1.9 (20231211) and PLINK2.0 (20231211) versions (and revised corresponding syntax in mixer_simu example)
-- Updated apt package versions to current
-- Revised installer scripts
-- Updated READMEs and example files
-
-### Added
-
-- Building and pushing the MiXeR images in both Docker and Singularity format to the [ghcr.io](https://ghcr.io) registry is now automated using GitHub Actions.
-- Added `gdb` to `apt_get_essentials.sh` for debugging.
-- Version pinned for Ubuntu, conda and conda packages.
-- Run `conda clean -a -y` in Dockerfile reducing image size.
-- Added [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb) Jupyter notebook for simplifying Slurm job submissions for lists of traits.
-- Include ``module purge`` in Slurm job scripts to avoid conflicts with system modules.
 
 ### Changed
 
-- Use Ubuntu 20.04 LTS as base image for Docker and Singularity containers.
-- Rebuilt container w. md5 checksum b344119fd1f8f9c425f0edea78c08881 (commit: 3882739)
+- Moved singularity/mixer.sif into ``deprecated`` sub-folder. Use ``gsa-mixer.sif`` instead. 
+  See https://github.com/precimed/mixer for further instructions.
 
-### Fixed
+## [Unreleased] - 2023-10-24
 
-- Removed use of `np.unique` in [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb)
-- Fixed incorrect job dependency bug in [`usecases/run_mixer.ipynb`](usecases/run_mixer.ipynb)
-- Updated outdated paths to comorment containers on p697
-- Explicitly named log files in Slurm .job scripts
-- Fixed reference to wrong container file in MIXER_SIMU.job
+### Changed
 
+- Rebuilt ``singularity/mixer.sif`` container w. md5 checksum b344119fd1f8f9c425f0edea78c08881 (commit: 3882739).
+  For more info see ``singularity/CHANGELOG``.
+ 
 ## [1.3.0] - 2022-09-30
 
 ### Added
