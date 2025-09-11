@@ -1,0 +1,15 @@
+cleansumstats_metafile_kind: minimal
+col_SNP: SNP
+col_CHR: CHR
+col_EAF: EAF_HRC
+col_EffectAllele: A1
+col_BETA: stdBeta
+col_OtherAllele: A2
+col_P: P
+col_POS: POS
+col_SE: SE
+col_Z: Zscore
+col_N: N_analyzed
+path_sumStats: SavageJansen_2018_intelligence_metaanalysis.txt.gz
+stats_Model: linear
+stats_neglog10P: false
