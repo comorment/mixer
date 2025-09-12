@@ -41,7 +41,7 @@ git lfs pull
 
 ## 2025-09-12
 
-- Added ``singularity/v2.2.1/mixer.sif``. This version supports GSA-MiXeR analysis
+- Added ``singularity/v2.2.1/mixer.sif`` w. md5 checksum 9b990dbcc9d4cde8d9755ea0da0e78bd. This version supports GSA-MiXeR analysis
 - Previous container is moved from ``singularity/mixer.sif`` to ``singularity/v1.3/mixer.sif``
 - Added reference files for GSA-MiXeR analysis
 - Added pre-generated synthetic GWAS data: ``referene/hapgen/[partial,shared,unique].sumstats.gz``
