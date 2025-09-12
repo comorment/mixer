@@ -37,6 +37,37 @@ git pull
 git lfs pull
 ```
 
+### Systems without internet access
+
+Some secure platforms do not have direct internet access, hence we recommend cloning/pulling all reference files on a machine with internet access above, and archive the `mixer` directory with all files and moving it using whatever file uploader is available for the platform.
+
+```bash
+cd /path/to/mixer
+SHA=$(git rev-parse --short HEAD)
+cd ..
+tar --exclude=".git/*" -cvf mixer_$SHA.tar mixer
+```
+
+### Citation info
+
+If you use ``singularity/v1.3/mixer.sif`` software, please cite our relevant preprint. For newer versions, see relevant publications [here](https://github.com/precimed/mixer).
+
+```
+Akdeniz, B.C., Frei, O., Hagen, E., Filiz, T.T., Karthikeyan, S., Pasman, J.A., Jangmo, A., Bergsted, J., Shorter, J.R., Zetterberg, R., Meijsen, J.J., Sønderby, I.E., Buil, A., Tesli, M., Lu, Y., Sullivan, P., Andreassen, O.A., & Hovig, E. (2022). COGEDAP: A COmprehensive GEnomic Data Analysis Platform. arXiv:2212.14103 [q-bio.GN]. DOI: [10.48550/arXiv.2212.14103](https://doi.org/)
+```
+
+Bibtex format:
+```
+@misc{akdeniz2022cogedap,
+      title={COGEDAP: A COmprehensive GEnomic Data Analysis Platform}, 
+      author={Bayram Cevdet Akdeniz and Oleksandr Frei and Espen Hagen and Tahir Tekin Filiz and Sandeep Karthikeyan and Joelle Pasman and Andreas Jangmo and Jacob Bergsted and John R. Shorter and Richard Zetterberg and Joeri Meijsen and Ida Elken Sonderby and Alfonso Buil and Martin Tesli and Yi Lu and Patrick Sullivan and Ole Andreassen and Eivind Hovig},
+      year={2022},
+      eprint={2212.14103},
+      archivePrefix={arXiv},
+      primaryClass={q-bio.GN}
+}
+```
+
 # Changelog
 
 ## 2025-09-12
