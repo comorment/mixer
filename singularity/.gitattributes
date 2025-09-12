@@ -1,3 +1,2 @@
-mixer.sif filter=lfs diff=lfs merge=lfs -text
-deprecated/mixer.sif filter=lfs diff=lfs merge=lfs -text
-gsa-mixer.sif filter=lfs diff=lfs merge=lfs -text
+v2.2.1/mixer.sif filter=lfs diff=lfs merge=lfs -text
+v1.3/mixer.sif filter=lfs diff=lfs merge=lfs -text
