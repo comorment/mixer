@@ -4,6 +4,7 @@ This folder contains reference files required to run cross-trait or GSA-MiXeR an
 * ldsc/baselineLD_v2.2_bedfiles_only_binary - functional annotations (raw format, .bed intervals) as used in GSA-MIXeR baseline model 
 * sumstats - selected GWAS summary statistics for tutorials
 * hapgen - synthetic genotype & sumstats data, 149454 SNPs, 10000 subjects
+* mixer_hello_world - small data package to run 'hello world' examples from the documentation
 
 Files specific to GSA-MiXeR analysis:
 

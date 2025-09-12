@@ -45,6 +45,7 @@ git lfs pull
 - Previous container is moved from ``singularity/mixer.sif`` to ``singularity/v1.3/mixer.sif``
 - Added reference files for GSA-MiXeR analysis
 - Added pre-generated synthetic GWAS data: ``referene/hapgen/[partial,shared,unique].sumstats.gz``
+- Added ``reference/mixer_hello_world`` dataset
 
 ## 2023-10-24
 

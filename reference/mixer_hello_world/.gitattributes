@@ -1,0 +1,10 @@
+g1000_eur_hm3_chr22.bed filter=lfs diff=lfs merge=lfs -text
+g1000_eur_hm3_chr22.bim filter=lfs diff=lfs merge=lfs -text
+g1000_eur_hm3_chr22.fam filter=lfs diff=lfs merge=lfs -text
+trait1.sumstats.gz filter=lfs diff=lfs merge=lfs -text
+g1000_eur_hm3_chr21.bim filter=lfs diff=lfs merge=lfs -text
+g1000_eur_hm3_chr21.fam filter=lfs diff=lfs merge=lfs -text
+g1000_eur_hm3_chr22.annot.gz filter=lfs diff=lfs merge=lfs -text
+trait2.sumstats.gz filter=lfs diff=lfs merge=lfs -text
+g1000_eur_hm3_chr21.annot.gz filter=lfs diff=lfs merge=lfs -text
+g1000_eur_hm3_chr21.bed filter=lfs diff=lfs merge=lfs -text
