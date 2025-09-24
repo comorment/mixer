@@ -3,6 +3,9 @@
 This project provides reference files for cross-trait (bivariate) and GSA-MiXeR analyses.
 You will find brief description of the reference files [here](reference/README.md).
 
+> [!WARNING] 
+> As of Sep 24, 2025 there is known issue with GitLFS quota on this repository. While this is not resolved use [this Dropbox link](https://www.dropbox.com/scl/fo/y5yl2bd5mgplsjwwzsx77/AIFIhSJkzJTFIYhR95TwRVc?rlkey=eydtbzwva5294snzgf6lz0g5f&st=5g7d4jiv&dl=0) to download. Total size of the ``reference`` folder is around 14 GB.
+
 UPD Sep 2025: 
 * User instructions are moved to https://github.com/precimed/mixer repository, and you should use this repository for most up to date instructions on how to install and run MiXeR analyses (bivariate, as well as GSA-MiXeR).
 * ``mixer.sif`` is upgraded from ``v1.3`` to ``v2.2.1``, which in addition to cross-trait analysis now also includes GSA MiXeR.
